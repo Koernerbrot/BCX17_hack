@@ -11,6 +11,10 @@ public class EventDto {
 
     EventType type;
 
+    public EventDto(EventType type) {
+        this.type = type;
+    }
+
     public EventType getType() {
         return type;
     }
