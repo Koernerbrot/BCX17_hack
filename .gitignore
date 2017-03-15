@@ -1,4 +1,13 @@
 *.class
+**/target/**
+
+# IntelliJ Idea files
+**/.idea
+**/*.iml
+
+# Maven files
+mvnw
+mvnw.cmd
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
