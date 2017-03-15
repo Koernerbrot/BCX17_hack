@@ -2,6 +2,7 @@ package com.thepeaklab.persistence.model.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * @author David Reiher (dreiher23@gmail.com, dr@thepeaklab.com)
  */
 @Entity
-public class App extends BaseEntity {
+public class Device extends BaseEntity {
 
     private String uuid;
 
@@ -20,7 +21,11 @@ public class App extends BaseEntity {
     @OneToMany
     private List<Event> events;
 
-    public App(String uuid, List<VehicleState> states) {
+    public Device(String uuid) {
+        this(uuid, new ArrayList<>());
+    }
+
+    public Device(String uuid, List<VehicleState> states) {
         this.uuid = uuid;
         this.states = states;
     }
