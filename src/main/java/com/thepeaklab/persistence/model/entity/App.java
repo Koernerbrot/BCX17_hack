@@ -1,8 +1,6 @@
-package com.thepeaklab.persistence.model;
+package com.thepeaklab.persistence.model.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.List;
 
@@ -18,6 +16,9 @@ public class App extends BaseEntity {
 
     @OneToMany
     private List<VehicleState> states;
+
+    @OneToMany
+    private List<Event> events;
 
     public App(String uuid, List<VehicleState> states) {
         this.uuid = uuid;
@@ -38,5 +39,13 @@ public class App extends BaseEntity {
 
     public void setStates(List<VehicleState> states) {
         this.states = states;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }

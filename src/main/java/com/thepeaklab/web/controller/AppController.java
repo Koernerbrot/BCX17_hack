@@ -19,8 +19,11 @@ public class AppController {
 
     protected Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
     VersionService versionService;
+
+    public AppController(VersionService versionService) {
+        this.versionService = versionService;
+    }
 
     @GetMapping("/version")
     @ResponseStatus(HttpStatus.OK)

@@ -1,4 +1,4 @@
-package com.thepeaklab.persistence.model;
+package com.thepeaklab.persistence.model.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
