@@ -1,5 +1,6 @@
 package com.thepeaklab.persistence.model.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
@@ -15,11 +16,15 @@ public class Device extends BaseEntity {
 
     private String uuid;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<VehicleState> states;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Event> events;
+
+    public Device() {
+        // nothing to do
+    }
 
     public Device(String uuid) {
         this(uuid, new ArrayList<>());
@@ -52,5 +57,13 @@ public class Device extends BaseEntity {
 
     public void setEvents(List<Event> events) {
         this.events = events;
+    }
+
+    public void addVehicleState(VehicleState state) {
+        this.states.add(state);
+    }
+
+    public void addEvent(Event event) {
+        this.events.add(event);
     }
 }

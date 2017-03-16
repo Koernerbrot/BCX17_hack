@@ -14,6 +14,10 @@ public class EventValue extends BaseEntity {
 
     double lng;
 
+    public EventValue() {
+        // default constructor
+    }
+
     public EventValue(double lat, double lng) {
         this.lat = lat;
         this.lng = lng;

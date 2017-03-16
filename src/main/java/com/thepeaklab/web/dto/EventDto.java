@@ -1,5 +1,6 @@
 package com.thepeaklab.web.dto;
 
+import com.thepeaklab.persistence.model.entity.Event;
 import com.thepeaklab.persistence.model.enums.EventType;
 
 /**
@@ -11,8 +12,22 @@ public class EventDto {
 
     EventType type;
 
-    public EventDto(EventType type) {
+    double lat;
+
+    double lng;
+
+    public EventDto() {
+        // nothing to do
+    }
+
+    public EventDto(EventType type, double lat, double lng) {
         this.type = type;
+        this.lat = lat;
+        this.lng = lng;
+    }
+
+    public static EventDto create(Event model) {
+        return new EventDto(model.getType(), model.getValue().getLat(), model.getValue().getLng());
     }
 
     public EventType getType() {
@@ -21,5 +36,21 @@ public class EventDto {
 
     public void setType(EventType type) {
         this.type = type;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 }

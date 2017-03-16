@@ -1,7 +1,13 @@
 package com.thepeaklab.web.controller;
 
+import com.thepeaklab.persistence.model.entity.Device;
+import com.thepeaklab.persistence.model.entity.Event;
 import com.thepeaklab.service.DeviceService;
+import com.thepeaklab.service.EventService;
 import com.thepeaklab.service.VersionService;
+import com.thepeaklab.web.dto.EventDto;
+import com.thepeaklab.web.dto.SensorDataDto;
+import com.thepeaklab.web.dto.SensorDataListDto;
 import com.thepeaklab.web.dto.VersionDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,17 +27,35 @@ public class DeviceController {
 
     DeviceService deviceService;
 
-    public DeviceController(DeviceService deviceService) {
+    EventService eventService;
+
+    public DeviceController(DeviceService deviceService, EventService eventService) {
         this.deviceService = deviceService;
+        this.eventService = eventService;
     }
 
     @PutMapping("/{deviceUuid}")
     @ResponseStatus(HttpStatus.CREATED)
     public void createDevice(@PathVariable String deviceUuid) {
 
-        log.info("createDevice() - API path /device/ " + deviceUuid + " called");
+        log.info("createDevice() - API path /device/" + deviceUuid + " called");
         deviceService.createDevice(deviceUuid);
+    }
 
+    @PostMapping("/{deviceUuid}/data")
+    @ResponseStatus(HttpStatus.CREATED)
+    public EventDto addSensorData(@PathVariable String deviceUuid, @RequestBody SensorDataListDto dto) {
+
+        log.info("addSensorData() - API path /device/" + deviceUuid + "/data called");
+        Device device = deviceService.addSensorData(deviceUuid, dto);
+
+        Event event = eventService.checkPastDataForEvents(device);
+
+        if (event != null) {
+            return EventDto.create(event);
+        }
+
+        return null;
     }
 
 }

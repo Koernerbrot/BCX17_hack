@@ -1,5 +1,6 @@
 package com.thepeaklab.persistence.model.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -19,8 +20,12 @@ public class VehicleState extends BaseEntity {
 
     private Double heading;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Acceleration acceleration;
+
+    public VehicleState() {
+
+    }
 
     public VehicleState(Double positionLat, Double positionLng, Double speed, Double heading, Double accelerationX, Double accelerationY, Double accelerationZ) {
         this.positionLat = positionLat;

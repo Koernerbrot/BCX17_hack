@@ -16,6 +16,10 @@ public class Acceleration extends BaseEntity {
 
     private Double z;
 
+    public Acceleration() {
+        // nothing to do
+    }
+
     public Acceleration(Double x, Double y, Double z) {
         this.x = x;
         this.y = y;

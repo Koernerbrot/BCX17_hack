@@ -19,6 +19,10 @@ public class Event extends BaseEntity {
     @OneToOne
     private EventValue value;
 
+    public Event() {
+        // default constructor
+    }
+
     public Event(EventType type, EventValue value) {
         this.type = type;
         this.value = value;
