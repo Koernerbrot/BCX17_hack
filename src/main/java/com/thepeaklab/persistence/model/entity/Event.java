@@ -1,8 +1,8 @@
 package com.thepeaklab.persistence.model.entity;
 
-import com.fasterxml.jackson.databind.deser.Deserializers;
 import com.thepeaklab.persistence.model.enums.EventType;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -16,7 +16,7 @@ public class Event extends BaseEntity {
 
     private EventType type;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private EventValue value;
 
     public Event() {

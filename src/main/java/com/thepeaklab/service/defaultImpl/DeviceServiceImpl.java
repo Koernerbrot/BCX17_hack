@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 /**
  * created on 15/03/2017
@@ -50,12 +51,15 @@ public class DeviceServiceImpl implements DeviceService {
     public Device addSensorData(String uuid, SensorDataListDto listDto) {
 
         Device device = this.deviceRepository.findByUuid(uuid).orElseThrow(EntityNotFoundException::new);
+        List<VehicleState> states = device.getStates();
 
         for (SensorDataDto dto : listDto.getList()) {
             Acceleration acceleration = new Acceleration(dto.getAccelerationX(), dto.getAccelerationY(), dto.getAccelerationZ());
             VehicleState vehicleState = new VehicleState(dto.getPositionLat(), dto.getPositionLng(), dto.getSpeed(), dto.getHeading(), acceleration);
-            device.addVehicleState(vehicleState);
+            states.add(vehicleState);
         }
+
+        device.setStates(states);
 
         return deviceRepository.save(device);
     }

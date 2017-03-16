@@ -3,6 +3,8 @@ package com.thepeaklab.service;
 import com.thepeaklab.persistence.model.entity.Device;
 import com.thepeaklab.persistence.model.entity.Event;
 
+import java.util.List;
+
 /**
  * created on 16/03/2017
  *
@@ -10,5 +12,5 @@ import com.thepeaklab.persistence.model.entity.Event;
  */
 public interface EventService {
 
-    Event checkPastDataForEvents(Device device);
+    List<Event> checkPastDataForEvents(Device device, int valuesToCheck);
 }

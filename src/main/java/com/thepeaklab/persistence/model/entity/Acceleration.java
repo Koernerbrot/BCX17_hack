@@ -49,4 +49,8 @@ public class Acceleration extends BaseEntity {
     public void setZ(Double z) {
         this.z = z;
     }
+
+    public String toString() {
+        return "Acceleration - X=" + this.getX() + " Y=" + this.getY() + " Z=" + this.getZ();
+    }
 }
